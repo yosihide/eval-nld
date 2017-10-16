@@ -1,0 +1,19 @@
+This code evaluates nonlocal dependency identification accuracy using the metric proposed in Johnson (2002).
+
+This code provides two functions: read-trees and eval-nld.
+The following is a sample code:
+
+(let ((gold-trees (read-trees "/corpus/gold.mrg"))
+      (test-trees (read-trees "/data/test.mrg")))
+  (eval-nld gold-trees test-trees :target :full))
+
+The function read-trees reads a PTB-formatted file and converts the trees into a tree list which the function eval-nld can receive.
+The function eval-nld receives a gold tree list and a test tree list.
+The keyword :target can take the following values:
+:full is a standard evaluation.
+:dependency excludes unindexed empty elements.
+:empty-element ignores fillers.
+:empty-terminal ignores fillers and empty element categories.
+
+References
+Mark Johnson. 2002. A simple pattern-matching algorithm for recovering empty nodes and their antecedents. In Proceedings of 40th Annual Meeting of the Association for Computational Linguistics, pages 136-143.
